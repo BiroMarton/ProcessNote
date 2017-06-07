@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.Processes = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -42,6 +43,8 @@
             this.CPUNum = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.ThreadsNum = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // Processes
@@ -179,11 +182,28 @@
             this.ThreadsNum.Size = new System.Drawing.Size(0, 13);
             this.ThreadsNum.TabIndex = 15;
             // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button2.Location = new System.Drawing.Point(472, 357);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(214, 108);
+            this.button2.TabIndex = 16;
+            this.button2.Text = "Shut down the application slowly and painfully!";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 300;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(756, 497);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.ThreadsNum);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.CPUNum);
@@ -222,6 +242,8 @@
         private System.Windows.Forms.Label CPUNum;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label ThreadsNum;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
