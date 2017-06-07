@@ -40,6 +40,8 @@
             this.NoteSave = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.CPUNum = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.ThreadsNum = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Processes
@@ -146,7 +148,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(286, 150);
+            this.label4.Location = new System.Drawing.Point(286, 165);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(64, 13);
             this.label4.TabIndex = 12;
@@ -155,16 +157,35 @@
             // CPUNum
             // 
             this.CPUNum.AutoSize = true;
-            this.CPUNum.Location = new System.Drawing.Point(356, 150);
+            this.CPUNum.Location = new System.Drawing.Point(356, 165);
             this.CPUNum.Name = "CPUNum";
             this.CPUNum.Size = new System.Drawing.Size(0, 13);
             this.CPUNum.TabIndex = 13;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(286, 199);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(75, 13);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "Threads used:";
+            // 
+            // ThreadsNum
+            // 
+            this.ThreadsNum.AutoSize = true;
+            this.ThreadsNum.Location = new System.Drawing.Point(367, 199);
+            this.ThreadsNum.Name = "ThreadsNum";
+            this.ThreadsNum.Size = new System.Drawing.Size(0, 13);
+            this.ThreadsNum.TabIndex = 15;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(756, 497);
+            this.Controls.Add(this.ThreadsNum);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.CPUNum);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.NoteSave);
@@ -199,6 +220,8 @@
         private System.Windows.Forms.Button NoteSave;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label CPUNum;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label ThreadsNum;
     }
 }
 

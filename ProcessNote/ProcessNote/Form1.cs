@@ -69,6 +69,11 @@ namespace ProcessNote
             notes.TryGetValue(name, out string o);
             Note.Text = o;
             CPUNum.Text = RunTest(name).ToString() + "%";
+            ProcessThreadCollection a = proc[0].Threads;
+            ThreadsNum.Text = a.Count.ToString();
+
+
+
 
         }
 
