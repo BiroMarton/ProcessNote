@@ -15,7 +15,17 @@ namespace ProcessNote
     public partial class Form1 : Form
     {
         Dictionary<string, string> notes = new Dictionary<string, string>();
-        
+        Process[] process = Process.GetProcesses();
+
+        public void getProcess()
+        {
+            foreach (Process p in process)
+            {
+                Processes.Items.Add(p.ProcessName + " - " + p.Id);
+            }
+            Num.Text = process.Length.ToString();
+        }
+
 
         private static float RunTest(string appName)
         {
@@ -44,40 +54,30 @@ namespace ProcessNote
          
             InitializeComponent();
             timer1.Enabled = false;
-            Process[] process = Process.GetProcesses();
             this.TopMost = false;
+            getProcess();
 
-           
 
-            foreach (Process p in process)
-            {
-                Processes.Items.Add(p.Id + " " + p.ProcessName);
-            }
-            ;
-            Num.Text = process.Length.ToString();
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Process[] process = Process.GetProcesses();
+            
             Processes.Items.Clear();
-            foreach (Process p in process)
-            {
-                Processes.Items.Add(p.Id + " " + p.ProcessName);
-            }
-            Num.Text = process.Length.ToString();
+            getProcess();
+
 
         }
 
         private void Processes_SelectedIndexChanged(object sender, EventArgs e)
         {
             String longName = Processes.SelectedItem.ToString();
-            string[] names = longName.Split(' ');
-            Array.Sort(names);
-            string name = names[1];
+            string name = longName.Substring(0,longName.IndexOf("-")-1);
+            string id = longName.Substring(longName.IndexOf("-") + 2);
             Process[] proc = Process.GetProcessesByName(name);
             MemoryNum.Text = (proc[0].PrivateMemorySize64 / (1024 * 1024)).ToString() + " MB";
-            notes.TryGetValue(name, out string o);
+            notes.TryGetValue(id, out string o);
             Note.Text = o;
             CPUNum.Text = RunTest(name).ToString() + "%";
             ProcessThreadCollection a = proc[0].Threads;
@@ -90,7 +90,8 @@ namespace ProcessNote
 
         private void NoteSave_Click(object sender, EventArgs e)
         {
-            String name = Processes.SelectedItem.ToString();
+            String longName = Processes.SelectedItem.ToString();
+            String name = longName.Substring( longName.IndexOf("-") + 2);
             String content = Note.Text;
             if (notes.ContainsKey(name))
             {

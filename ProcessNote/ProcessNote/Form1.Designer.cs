@@ -51,6 +51,7 @@
             // 
             // Processes
             // 
+            this.Processes.Sorted = true;
             this.Processes.FormattingEnabled = true;
             this.Processes.ItemHeight = 16;
             this.Processes.Location = new System.Drawing.Point(53, 71);
