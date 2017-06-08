@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace ProcessNote
 {
@@ -44,13 +45,13 @@ namespace ProcessNote
             InitializeComponent();
             timer1.Enabled = false;
             Process[] process = Process.GetProcesses();
-            this.TopMost = true;
+            this.TopMost = false;
 
            
 
             foreach (Process p in process)
             {
-                Processes.Items.Add(p.ProcessName);
+                Processes.Items.Add(p.Id + " " + p.ProcessName);
             }
             ;
             Num.Text = process.Length.ToString();
@@ -62,7 +63,7 @@ namespace ProcessNote
             Processes.Items.Clear();
             foreach (Process p in process)
             {
-                Processes.Items.Add(p.ProcessName);
+                Processes.Items.Add(p.Id + " " + p.ProcessName);
             }
             Num.Text = process.Length.ToString();
 
@@ -70,7 +71,10 @@ namespace ProcessNote
 
         private void Processes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            String name = Processes.SelectedItem.ToString();
+            String longName = Processes.SelectedItem.ToString();
+            string[] names = longName.Split(' ');
+            Array.Sort(names);
+            string name = names[1];
             Process[] proc = Process.GetProcessesByName(name);
             MemoryNum.Text = (proc[0].PrivateMemorySize64 / (1024 * 1024)).ToString() + " MB";
             notes.TryGetValue(name, out string o);
@@ -126,6 +130,11 @@ namespace ProcessNote
                         Processes.Items.Add(t1);
 
                     }
+                    button3.Text = t2;
+                    break;
+                case 7:
+                    label6.Text = t3;
+                    ThreadsNum.Text = t1;
                     break;
                 case 11:
                     Num.Text = "9999999999999999999999999+";
@@ -159,6 +168,19 @@ namespace ProcessNote
                 this.Close();
             }
             
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.TopMost = !(this.TopMost);
+            if (this.TopMost == true)
+            {
+                button3.Text = "Turn me off";
+            }
+            else
+            {
+                button3.Text = "Turn me on!";
+            }
         }
     }
 }
